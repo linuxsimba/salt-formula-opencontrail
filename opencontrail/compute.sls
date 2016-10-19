@@ -73,6 +73,12 @@ net.ipv4.ip_local_reserved_ports:
 
 {%- if network.interface.get('vhost0', {}).get('enabled', False) %}
 
+contrail_run_dkms:
+  cmd.run:
+    - name: dkms autoinstall
+    - require:
+      - pkg: opencontrail_compute_packages
+
 contrail_load_vrouter_kernel_module:
   cmd.run:
   - name: modprobe vrouter
